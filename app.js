@@ -2,6 +2,31 @@ let items =  products;
 categories = new Set();
 let products_container = document.querySelector('.products')
 
+
+
+const search_input = document.querySelector('.form_input');
+search_input.addEventListener('input', (e)=>{
+    const es = e.target.value;
+    const found_item = items.filter((product)=>{
+        if(product.nazwa_albumu.toLowerCase().includes(es.toLowerCase())){
+            return product;
+        }
+    });
+    const nie = document.querySelector('#nie');
+    console.log(found_item.length);
+    if(found_item.length === 0){
+        nie.classList.remove('notactive');
+    }else{
+        nie.classList.add('notactive');
+    }
+
+render_items(found_item)
+})
+
+
+
+
+
 const render_items = (items) =>{
     products_container.innerHTML =``;
     for(let i = 0; i<= items.length; i++){
@@ -21,8 +46,11 @@ const render_items = (items) =>{
             <div id="button">ADD TO CART</div>
         `;
         products_container.appendChild(new_prod);
+
     }
 };
 
 document.onload = render_items(items);
-// class="btn btn-dark"
+
+
+

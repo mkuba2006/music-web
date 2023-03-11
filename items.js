@@ -9,7 +9,7 @@ products = [
     },
     {
         id:1,
-        nazwa_albumu: 'OK Comoputer',
+        nazwa_albumu: 'OK Computer',
         rok_wydania: '1997',
         cena: '19.99',
         zespol: 'RadioHead',

@@ -4,10 +4,10 @@
 
 body{
     font-family: "Montserrat", sans-serif;
-    background-color: #453C67;
+    background-color: #131111;
     padding: 0;
     margin: 0;
-    color: rgb(14, 14, 14);
+    color: rgba(14, 14, 14, 0.795);
 }
 .navbar{
     display: flex;
@@ -42,7 +42,7 @@ body{
   position: relative;
   top: 10vh;
   padding: 50px;
-  color: aliceblue;
+  color: rgb(255, 240, 240);
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -50,15 +50,21 @@ body{
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 30px;
+  row-gap: 60px;
+  column-gap: 30px;
 }
 .product{
   border-radius: 10px;
   text-align: center;
   margin: 0;
-  background-color: #0000009f;
+  background-color: #2a2a2b;
   padding: 10px;
   width: 270px;
+}
+
+.product:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 #img_back{
   margin: 0 auto;
@@ -67,7 +73,7 @@ body{
   align-items: center;
   justify-content: center;
   width: 95%;
-  background-color: #0000009f;
+  background-color: #BAD7E9;
   height: 50%;
 }
 img{
@@ -80,7 +86,7 @@ img{
 }
 #title{
   font-weight: 900;
-  font-size: 20px;
+  font-size: 19px;
   padding: 2px 10px;
   text-transform: uppercase;
   text-decoration: none;
@@ -89,9 +95,13 @@ img{
   justify-content: center;
   overflow: hidden;
 }
+#s{
+  size: 10px;
+  width: 25px;
+}
 p span{
   margin: 0;
-  color: antiquewhite;
+  color: #f0ff7d;
   font-size: 15px;
 }
 p{
@@ -111,4 +121,9 @@ p{
 }
 #button:hover{
   color: rgb(235, 231, 0);
+}
+
+
+.notactive{
+  display: none;
 }
