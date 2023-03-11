@@ -18,6 +18,7 @@ const render_items = (items) =>{
                     <p>${items[i].cena} zł</p>
                 </div>
             </div>
+            <div id="button">ADD TO CART</div>
         `;
         products_container.appendChild(new_prod);
     }

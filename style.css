@@ -11,6 +11,9 @@ body{
 }
 .navbar{
     display: flex;
+    z-index: 1;
+    position: fixed;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     padding: 20px 10%;
@@ -36,6 +39,8 @@ body{
   }
 
 .products{
+  position: relative;
+  top: 10vh;
   padding: 50px;
   color: aliceblue;
   width: 80%;
@@ -51,22 +56,23 @@ body{
   border-radius: 10px;
   text-align: center;
   margin: 0;
-  display: inline;
   background-color: #0000009f;
   padding: 10px;
   width: 270px;
 }
 #img_back{
+  margin: 0 auto;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 95%;
+  background-color: #0000009f;
   height: 50%;
 }
 img{
   border-radius: 10px;
-  width: 90%;
+  width: 70%;
   object-fit: cover;
 }
 #content{
@@ -90,4 +96,19 @@ p span{
 }
 p{
   margin: 0;
+}
+
+
+#button{
+  margin: 0 auto;
+  background-color: black;
+  color: white;
+  width: 80%;
+  padding: 8px 16px;
+  border-radius: 7px;
+  transition-duration: 0.5s;
+  font-weight: 900;
+}
+#button:hover{
+  color: rgb(235, 231, 0);
 }
