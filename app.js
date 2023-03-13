@@ -25,8 +25,6 @@ render_items(found_item)
 
 
 
-
-
 const render_items = (items) =>{
     products_container.innerHTML =``;
     for(let i = 0; i<= items.length; i++){
@@ -37,7 +35,10 @@ const render_items = (items) =>{
                 <img src="${items[i].obraz}"/>
             </div>
             <div id="content">
-                <a id="title">${items[i].nazwa_albumu}</a>
+                <a id="title">
+                ${items[i].nazwa_albumu}
+                <i class="fa-regular fa-heart ${items[i].id}"></i>
+                </a>
                 <div id="opis">
                     <p>${items[i].zespol}</p>
                     <p>${items[i].cena} zł</p>
@@ -46,9 +47,11 @@ const render_items = (items) =>{
             <div id="button">ADD TO CART</div>
         `;
         products_container.appendChild(new_prod);
-
     }
 };
+
+
+
 
 document.onload = render_items(items);
 

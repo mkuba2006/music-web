@@ -12,7 +12,6 @@ body{
 .navbar{
     display: flex;
     z-index: 1;
-    position: fixed;
     width: 100%;
     align-items: center;
     justify-content: space-between;
@@ -37,7 +36,16 @@ body{
   span{
     font-size: 30px;
   }
-
+  ul{
+    display: none;
+    width: 200px;
+    position: absolute;
+    right: 7%;
+    background-color: #BAD7E9;
+  }
+.uls{
+  display: list-item;
+}
 .products{
   position: relative;
   top: 10vh;
