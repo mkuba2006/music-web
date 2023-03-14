@@ -37,14 +37,13 @@ const render_items = (items) =>{
             <div id="content">
                 <a id="title">
                 ${items[i].nazwa_albumu}
-                <i class="fa-regular fa-heart ${items[i].id}"></i>
                 </a>
                 <div id="opis">
                     <p>${items[i].zespol}</p>
                     <p>${items[i].cena} zł</p>
                 </div>
             </div>
-            <div id="button">ADD TO CART</div>
+            <div id="button">Favourite <i class="fa-regular fa-heart ${items[i].id}"></i></div>
         `;
         products_container.appendChild(new_prod);
     }
