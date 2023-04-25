@@ -4,7 +4,7 @@ let products_container = document.querySelector('.products')
 
 
 
-const search_input = document.querySelector('.form_input');
+const search_input = document.querySelector('.f_input');
 search_input.addEventListener('input', (e)=>{
     const es = e.target.value;
     const found_item = items.filter((product)=>{

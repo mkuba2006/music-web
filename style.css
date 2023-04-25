@@ -12,25 +12,23 @@ body{
 .navbar{
     display: flex;
     z-index: 1;
-    width: 100%;
+    width: auto;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 20px 10%;
     background-color: #6D67E4;
 }
-.form__input {
+#name {
     font-family: 'Roboto', sans-serif;
     color: #333;
-    font-size: 1rem;
+    font-size: 18px;
     margin: 0 auto;
-    padding: 1.2rem 2rem 1rem 2rem;
+    padding: 16px;
     border-radius: 0.2rem;
     background-color: #FFCEFE;
     border: none;
     font-weight: 700;
-    width: 20%;
     display: block;
-    border-bottom: 0.3rem solid transparent;
     transition: all 0.3s;
   }
   span{
