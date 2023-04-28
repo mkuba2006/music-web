@@ -11,8 +11,9 @@ body{
 }
 .navbar{
     display: flex;
+    position: fixed;
+    width: 100vw;
     z-index: 1;
-    width: auto;
     align-items: center;
     justify-content: space-evenly;
     padding: 20px 10%;
