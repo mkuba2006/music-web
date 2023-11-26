@@ -1,70 +1,42 @@
 let items =  products;
 categories = new Set();
 let products_container = document.querySelector('.products')
-
-
-
-const search_input = document.querySelector('.f_input');
-search_input.addEventListener('input', (e)=>{
-    const es = e.target.value;
-    const found_item = items.filter((product)=>{
-        if(product.nazwa_albumu.toLowerCase().includes(es.toLowerCase())){
-          return product;
-        }
-    });
-    const nie = document.querySelector('#nie');
-    if(found_item.length < 1){
-      nie.classList.remove('notactive');
-    }else{
-      nie.classList.add('notactive');
-    }
-
-  render_items(found_item)
-})
-
-
-
 const render_items = (items) =>{
     products_container.innerHTML =``;
-    for(let i = 0; i<= items.length; i++){
+    for(let i = 0; i < items.length; i++){
         const new_prod = document.createElement('div');
         new_prod.className = `card-container product${items[i].id}`;
-        new_prod.innerHTML =`
-          <div class="global">
-            <a class="image-container">
-              <i class="fa fa${items[i].id} fa-regular fa-star"></i>
-              <section>
-                <img class="hero-image" src="${items[i].obraz}"/>
-              </section>
-            </a>
+        if(window.innerWidth > 590){
+          new_prod.innerHTML =`
+            <div class="global">
+              <a class="card-img-for">
+                <i class="fa fa${items[i].id} fa-regular fa-star"></i>
+                <section>
+                  <img class="card-img" src="${items[i].obraz}"/>
+                </section>
+              </a>
+            </div>
 
-
-            <main class="main">
-              <h1><a href="#m">${items[i].nazwa_albumu}</a></h1>
+            <div class="card-text">
+              <h1><a href="#m">${items[i].nazwa_albumu.slice(0, 14)}${items[i].nazwa_albumu.length > 14 ? '...' : ''}</a></h1>
+              <p id="band">created by <span><a href="#">${items[i].zespol}</a></span></p>
+              <p id="rate">rate: <span>${items[i].rank}</span></p>
               <div class="opis-cont">
                 <p id="p">
                   ${items[i].opis}
                 </p>
-                <button id='content-button'>Show content</button>
-              </div>
-
-            </main>
-          </div>
-          <div class="card-attribute">
-            <p>created by <span><a href="#">${items[i].zespol}</a></span></p>
-          </div>
-          </div>
-        `
-
-        const p = new_prod.querySelector('.opis-cont p');
-        const but = new_prod.querySelector('#content-button');
-        const opisParagraph = new_prod.querySelector("p");
-        const opisText = opisParagraph.textContent;
-        if (opisText.length > 100 && window.innerWidth >1075 || window.innerWidth <500) {
+              <button id='content-button'>Show content</button>
+            </div>
+          `
+          
+          const p = new_prod.querySelector('.opis-cont p');
+          const but = new_prod.querySelector('#content-button');
+          const opisParagraph = new_prod.querySelector("#p");
+          const opisText = opisParagraph.textContent;
           but.addEventListener('click',()=>{
             p.classList.toggle('Act');
             but.classList.toggle('Act');
-            but.textContent = !p.classList.contains('notAct') ? 'Hide content' : 'Show content';
+            but.textContent = p.classList.contains('Act') ? 'Hide content' : 'Show content';
           })
 
           if(window.innerWidth >1075){
@@ -74,24 +46,86 @@ const render_items = (items) =>{
             opisParagraph.textContent = opisText;
           }
         }
-
+        else{
+          new_prod.innerHTML =`
+          <div class="global">
+            <a class="card-img-for">
+              <section>
+                <img class="card-img" src="${items[i].obraz}"/>
+              </section>
+            </a>
+          </div>
+          <div class="card-text">
+            <h1><a href="#m">${items[i].nazwa_albumu.slice(0, 14)}${items[i].nazwa_albumu.length > 14 ? '...' : ''}</a></h1>
+            <p>created by <span><a href="#">${items[i].zespol}</a></span></p>
+        `
+        }
       products_container.appendChild(new_prod);
+      if(window.innerWidth <600){
+        ScrollReveal().reveal('.card-container', { delay: 200, origin: 'bottom', distance: '60%', interval: 110});
+      }else {
+        ScrollReveal().reveal('.card-container', { delay: 200, origin: 'bottom', distance: '100%', interval: 110});
+      }
     }
+    
 };
 
 
 
 
+
+const search_input = document.querySelector('.f_input');
+
+const type = (txt)=>{
+  const found_item = items.filter(product => product.nazwa_albumu.toLowerCase().includes(txt));
+  const nie = document.querySelector('#nie');
+  nie.classList.toggle('notactive', found_item.length >= 1);
+  setTimeout(()=>{
+    render_items(found_item);
+    initializeApp();
+  },200)
+}
+
+search_input.addEventListener('input',(e)=>{
+  const text = e.target.value.toLowerCase();
+  type(text);
+})
+
+
+const sortItems = (option) => {
+  if (option === 'ascNAME') {
+    items.sort((a, b) => a.nazwa_albumu.localeCompare(b.nazwa_albumu));
+  } 
+  else if (option === 'desNAME') {
+    items.sort((a, b) => b.nazwa_albumu.localeCompare(a.nazwa_albumu));
+  } 
+  else if (option === 'ascRATING') {
+    items.sort((a, b) => {
+      const rankA = parseFloat(a.rank);
+      const rankB = parseFloat(b.rank);
+      return rankA - rankB;
+    });
+  } else if (option === 'desRATING') {
+    items.sort((a, b) => {
+      const rankA = parseFloat(a.rank);
+      const rankB = parseFloat(b.rank);
+      return rankB - rankA;
+    });
+  } else if (option === 'return') {
+    items.sort((a, b) => a.id - b.id); // Sort by ID from low to high
+  }
+
+  render_items(items);
+};
+
+const selectElement = document.getElementById('options');
+selectElement.addEventListener('change', (e) => {
+  const selectedOption = e.target.value;
+  sortItems(selectedOption);
+  search_input.value = "";
+});
+
+
+
+
 document.onload = render_items(items);
-
-// <img src="https://i.postimg.cc/prpyV4mH/clock-selection-no-bg.png" alt="clock" class="small-image"/>
-
-{/* <div class="flex-row">
-<div class="coin-base">
-<i class="fa-solid fa-star"></i>
-  <h2>${items[i].rank}</h2>
-</div>
-<div class="time-left">
-  <p>${items[i].rok_wydania}</p>
-</div>
-</div> */}
