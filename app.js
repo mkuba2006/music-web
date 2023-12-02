@@ -62,9 +62,9 @@ const render_items = (items) =>{
         }
       products_container.appendChild(new_prod);
       if(window.innerWidth <600){
-        ScrollReveal().reveal('.card-container', { delay: 200, origin: 'bottom', distance: '60%', interval: 110});
+        ScrollReveal().reveal('.card-container', { delay: 200, origin: 'bottom', distance: '60%', interval: 60});
       }else {
-        ScrollReveal().reveal('.card-container', { delay: 200, origin: 'bottom', distance: '100%', interval: 110});
+        ScrollReveal().reveal('.card-container', { delay: 200, origin: 'bottom', distance: '50%', interval: 60});
       }
     }
     
